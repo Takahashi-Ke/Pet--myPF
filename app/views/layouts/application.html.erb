@@ -20,18 +20,36 @@
             <h1>ペッと！</h1>
           </div>
           <div class="col-md-4">
-            <% if owner_signed_in? %>
-              <%= link_to "マイハウス", '#' %>
-              <%= link_to "お知らせ", '#' %>
-              <%= link_to "ログアウト", destroy_owner_session_path %>
-            <% else %>
-              <%= link_to "新規登録", new_owner_registration_path %>
-              <%= link_to "ログイン", new_owner_session_path %>
-            <% end %>
+            <ul class="nav">
+              <% if owner_signed_in? %>
+                <li><%= link_to "マイハウス", '#' %></li>
+                <li><%= link_to "お知らせ", '#' %></li>
+                <li><%= link_to "ログアウト", destroy_owner_session_path %></li>
+              <% else %>
+                <li><%= link_to "新規登録", new_owner_registration_path %></li>
+                <li><%= link_to "ログイン", new_owner_session_path %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
     </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3 col-md-offset-6">
+            <%= link_to "Topへ戻る", "#" %>
+            <%= link_to "お問い合わせ", "#" %>
+          </div>
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>
