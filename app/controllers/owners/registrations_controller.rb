@@ -8,11 +8,11 @@ class Owners::RegistrationsController < Devise::RegistrationsController
   def new
     super
     @owner = Owner.new
+    @owner.build_pet
   end
 
   # POST /resource
   def create
-    super
     owner = Owner.new(configure_sign_up_params)
     owner.save
   end

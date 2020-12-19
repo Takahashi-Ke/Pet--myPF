@@ -3,6 +3,8 @@ class Pet < ApplicationRecord
   belongs_to :owner
   has_many :pet_personalities, dependent: :destroy
 
+  self.inheritance_column = :_type_disabledrails
+
   attachment :image
   validates :name, presence: true
 
