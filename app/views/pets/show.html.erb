@@ -1,0 +1,47 @@
+<div class="conrainer">
+  <div class="row">
+    <div class="col-4">
+      <%= attachment_image_tag @pet, :image, size: '220x220', fallback: "no_image.png" %>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <%= @pet.name %>
+        <%= @pet.gender %>
+        <%= @pet.birthday %>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <%= @pet.type %>
+        </div>
+        <div class="col-2">
+          <p>性格</p>
+        </div>
+        <div class="col-4">
+          <% if @pet.pet_personalities.exists? %>
+            <% @pet_personalities.each do |pp| %>
+              <%= pp.personality %>
+            <% end %>
+          <% else %>
+            <div id="select-personality">
+              <%= button_tag "#{@pet.name}の性格を選ぶ" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <%= @pet.introduction %>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p>友だち（10）</p>
+        </div>
+        <div class="col-3 col-offset-3">
+          <%= link_to "プロフィールを編集する", edit_pet_path(@pet) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+</div>
