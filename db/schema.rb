@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_122345) do
+ActiveRecord::Schema.define(version: 2020_12_19_010216) do
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_122345) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "type"
     t.index ["owner_id"], name: "index_pets_on_owner_id"
   end
 
