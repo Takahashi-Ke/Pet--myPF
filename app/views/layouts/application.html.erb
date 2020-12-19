@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pet</title>
+    <title>ペッと！</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,46 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <%= link_to "ペッと！について", '#' %>
+          </div>
+          <div class="col-md-4 offset-md-2">
+            <h1>ロゴ</h1>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav">
+              <% if owner_signed_in? %>
+                <li><%= link_to "マイハウス", '#' %></li>
+                <li><%= link_to "お知らせ", '#' %></li>
+                <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "新規登録", new_owner_registration_path %></li>
+                <li><%= link_to "ログイン", new_owner_session_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3 offset-md-6">
+            <%= link_to "Topへ戻る", root_path %>
+            <%= link_to "お問い合わせ", "#" %>
+          </div>
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>
