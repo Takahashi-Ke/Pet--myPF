@@ -48,6 +48,8 @@
                   <div class="field">
                     <%= pet.label :性別※ %><br />
                     <%= pet.select :gender, Pet.genders.keys %>
+                    <%#= pet.select :gender, options_for_select(Pet.genders.to_a, selected: @owner.build_pet.gender_before_type_cast) %>
+                    <%#= pet.select :gender, Pet.genders.map{|k,v| [k,v]} %>
                   </div>
                 </div>
               </div>
