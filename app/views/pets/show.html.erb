@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-4">
       <%= attachment_image_tag @pet, :image, size: '220x220', fallback: "no_image.png" %>
@@ -42,26 +42,61 @@
     </div>
   </div>
 
-  <!--日記一覧-->
   <div class="row">
-    <div class="col-1">
-      <div class="add-diary-button">
-        日記を書く
+    <div class="col-8 offset-1">
+        <!--タブメニュー-->
+      <ul id="tab-menu">
+        <li><a href="#tab1" class="active">日記</a></li>
+        <li><a href="#tab2" class="">アルバム</a></li>
+        <li><a href="#tab3" class="">思い出</a></li>
+        <li><a href="#tab4" class="">友だち</a></li>
+      </ul>
+
+      <div id="tab-contents">
+
+        <!--日記一覧(tab1)-->
+        <div id="tab1" class="tab">
+          <div class="row">
+            <div class="col-2">
+              <div class="add-diary-button">
+                日記を書く
+              </div>
+            </div>
+            <div class="col-8">
+              <%= render 'diaries/diaries_list', diaries: @diaries %>
+            </div>
+          </div>
+        </div>
+
+        <!--アルバム一覧(tab2)-->
+        <div id="tab2" class="tab">
+          <div class="row">
+            <% @photos.each do |photo| %>
+              <div class="col-3">
+                <%= attachment_image_tag photo, :image, size: '200x200' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!--思い出(tab3)-->
+        <div id="tab3" class="tab">
+          <p>思い出</p>
+        </div>
+
+        <!--友だち(tab3)-->
+        <div id="tab4" class="tab">
+          <p>友だち</p>
+        </div>
+
       </div>
-    </div>
-    <div class="col-6">
-      <%= render 'diaries/diaries_list', diaries: @diaries %>
     </div>
   </div>
 
 
 
-  <!--アルバム一覧-->
-
-
 
   <!--日記新規投稿-->
-
   <div class="modal-wrapper"></div>
     <div class="diary-modal">
       <%= render 'diaries/diary_form', diary: @diary, pet: @pet %>
