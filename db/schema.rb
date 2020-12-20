@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_133731) do
+ActiveRecord::Schema.define(version: 2020_12_20_031035) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
     t.text "body"
-    t.string "image_"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_diaries_on_pet_id"
