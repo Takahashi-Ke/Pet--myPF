@@ -39,9 +39,15 @@ $(document).on("turbolinks:load", function(){
 });
 
 // モーダルウィンドウ
+// 表示
 $(function() {
   $(document).on('click', '.add-diary-button', function() {
-    $('.diary-modal-wrapper').show();
+    $('.modal-wrapper').show();
     $('.diary-modal').show();
   });
 });
+// 非表示
+$(document).on('click', '.modal-wrapper, .hide-modal-btn', function() {
+    $('.modal-wrapper').hide();
+    $('.diary-modal').hide();
+})
