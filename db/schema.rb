@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_20_031035) do
+ActiveRecord::Schema.define(version: 2020_12_20_102532) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "diary_id"
+    t.integer "memory_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_comments_on_diary_id"
+    t.index ["memory_id"], name: "index_comments_on_memory_id"
+    t.index ["pet_id"], name: "index_comments_on_pet_id"
+  end
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
@@ -19,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_12_20_031035) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_diaries_on_pet_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "diary_id"
+    t.integer "memory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_favorites_on_diary_id"
+    t.index ["memory_id"], name: "index_favorites_on_memory_id"
+    t.index ["pet_id"], name: "index_favorites_on_pet_id"
   end
 
   create_table "memories", force: :cascade do |t|

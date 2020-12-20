@@ -4,6 +4,8 @@ class Pet < ApplicationRecord
   has_many :pet_personalities, dependent: :destroy
   has_many :diaries, dependent: :destroy
   has_many :memories, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   accepts_nested_attributes_for :pet_personalities, allow_destroy: true
 
