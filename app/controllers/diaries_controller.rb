@@ -19,7 +19,6 @@ class DiariesController < ApplicationController
 
   def destroy
     diary = Diary.find(params[:id])
-    # binding.pry
     diary.destroy
     redirect_to request.referer
   end
