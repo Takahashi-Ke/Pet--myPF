@@ -2,6 +2,9 @@ class Pet < ApplicationRecord
 
   belongs_to :owner
   has_many :pet_personalities, dependent: :destroy
+  has_many :diaries, dependent: :destroy
+  has_many :memories, dependent: :destroy
+
   accepts_nested_attributes_for :pet_personalities, allow_destroy: true
 
   self.inheritance_column = :_type_disabledrails
