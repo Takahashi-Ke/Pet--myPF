@@ -3,6 +3,8 @@ class PetsController < ApplicationController
   def show
     @pet = Pet.find_by(id: current_owner.pet)
     @personalities = @pet.pet_personalities
+    @diary = Diary.new
+    @diaries = @pet.diaries
   end
 
   def edit

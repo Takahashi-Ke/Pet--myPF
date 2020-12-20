@@ -41,7 +41,66 @@
       </div>
     </div>
   </div>
-  <div class="row">
 
+  <!--日記一覧-->
+  <div class="row">
+    <div class="col-2">
+      <div class="add-diary-button">
+        日記を書く
+      </div>
+    </div>
+    <div class="col-6">
+      <% @diaries.each do |diary| %>
+        <div class="row">
+          <div class="col-1">
+            <%= attachment_image_tag @pet, :image, size: '60x60', fallback: "no_image.png" %>
+          </div>
+          <div class="col-3">
+            <%= @pet.name %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 offset-2">
+            <%= attachment_image_tag diary, :image, size: '110x110' %><br />
+            <%= diary.body %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2 offset-6">
+            <%= link_to "コメント", "#" %>
+          </div>
+          <div class="col-2">
+            <%= link_to "いいね", "#" %>
+          </div>
+          <% if @pet == current_owner.pet %>
+            <div class="col-2">
+              <%= link_to "削除", diary_path, method: :delete, data: {confirm: "削除しますか？"} %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
+
+
+
+  <!--アルバム一覧-->
+
+
+  <!--日記新規投稿-->
+
+  <div class="diary-modal-wrapper"></div>
+    <div class="diary-modal">
+      <div class="row">
+        <div class="col-8 offset-1">
+          <%= form_with model: @diary, url: diaries_path(pet_id: @pet), local: true do |f| %>
+            <p>日記を書く</p>
+            <%= f.text_area :body, placeholder: "今日の出来事" %>
+            <%= f.attachment_field :image %>
+            <%= f.submit "投稿する" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
 </div>

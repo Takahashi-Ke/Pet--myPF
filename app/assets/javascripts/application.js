@@ -37,3 +37,11 @@ $(document).on("turbolinks:load", function(){
     readURL(this);
   });
 });
+
+// モーダルウィンドウ
+$(function() {
+  $(document).on('click', '.add-diary-button', function() {
+    $('.diary-modal-wrapper').show();
+    $('.diary-modal').show();
+  });
+});

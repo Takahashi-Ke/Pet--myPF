@@ -1,3 +1,23 @@
 // Place all the styles related to the Diaries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.diary-modal-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: .5;
+  display: none;
+}
+
+.diary-modal {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  display: none;
+
+}
