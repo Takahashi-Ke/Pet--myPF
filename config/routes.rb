@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :pets, only: [:index, :show, :edit, :update]
   resources :diaries, only: [:index, :create, :destroy]
   resources :memories
+  resources :diary_comments, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
+
 end

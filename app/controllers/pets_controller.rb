@@ -6,6 +6,7 @@ class PetsController < ApplicationController
     @diary = Diary.new
     @diaries = @pet.diaries
     @photos  = Diary.where.not(image_id: nil)
+    @diary_comment = DiaryComment.new
   end
 
   def edit
