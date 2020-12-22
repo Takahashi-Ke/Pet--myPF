@@ -72,8 +72,8 @@
         <div id="tab2" class="tab">
           <div class="row">
             <% @photos.each do |photo| %>
-              <div class="col-3">
-                <%= attachment_image_tag photo, :image, size: '200x200' %>
+              <div class="col-3 mb-3">
+                <%= attachment_image_tag photo, :image, size: '190x190' %>
               </div>
             <% end %>
           </div>
@@ -84,7 +84,7 @@
           <p>思い出</p>
         </div>
 
-        <!--友だち(tab3)-->
+        <!--友だち(tab4)-->
         <div id="tab4" class="tab">
           <p>友だち</p>
         </div>
