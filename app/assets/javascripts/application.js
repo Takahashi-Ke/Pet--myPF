@@ -65,3 +65,11 @@ $(document).on("turbolinks:load", function(){
     event.preventDefault();
   });
 });
+
+// コメント表示
+$(document).on("turbolinks:load", function(){
+  $('.comment-box').hide();
+  $('.comment-btn').on('click', function(){
+    $('.comment-box').toggle();
+  });
+});

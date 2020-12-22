@@ -1,4 +1,5 @@
 <% diaries.each do |diary| %>
+  <input class="data" type="hidden" name="data" value="=diary">
   <div class="diary-contents">
     <div class="row">
       <div class="col-2">
@@ -15,16 +16,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-2 offset-6">
-        <%= link_to "#" do %>
-          <i class="far fa-comment-alt"></i>
-        <% end %>
+      <div class="col-2 offset-6 comment-btn">
+        <i class="far fa-comment-alt"></i>
       </div>
-      <div class="col-2">
-        <%= link_to  "#"  do %>
-          <i class="far fa-heart"></i>
-        <% end %>
+      
+      <div class="col-2 diary-favorite-btn" id="diary_<%= diary.id %>">
+        <%= render 'diary_favorites/diary_favo', diary: diary %>
       </div>
+      
       <% if diary.pet == current_owner.pet %>
         <div class="col-2">
           <%= link_to diary_path(diary), method: :delete, data: {confirm: "削除しますか？"} do %>
@@ -33,5 +32,9 @@
         </div>
       <% end %>
     </div>
+
+    <!--コメント一覧-->
+    <%= render 'diary_comments/diary_list', diary: diary %>
+
   </div>
 <% end %>

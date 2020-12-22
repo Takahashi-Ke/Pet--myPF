@@ -13,6 +13,8 @@ class DiariesController < ApplicationController
       @pet = @diary.pet
       @personalities = @pet.pet_personalities
       @diaries = @pet.diaries
+      @photos  = Diary.where.not(image_id: nil)
+      @diary_comment = DiaryComment.new
       render 'pets/show'
     end
   end
