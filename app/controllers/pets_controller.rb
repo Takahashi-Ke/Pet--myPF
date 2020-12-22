@@ -1,11 +1,11 @@
 class PetsController < ApplicationController
 
   def show
-    @pet = Pet.find_by(id: current_owner.pet)
+    @pet = Pet.find(params[:id])
     @personalities = @pet.pet_personalities
     @diary = Diary.new
     @diaries = @pet.diaries
-    @photos  = Diary.where.not(image_id: nil)
+    @photos  = Diary.where.not(image_id: nil).where(pet_id: @pet)
     @diary_comment = DiaryComment.new
   end
 

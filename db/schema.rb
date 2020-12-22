@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_062654) do
+ActiveRecord::Schema.define(version: 2020_12_22_090841) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(version: 2020_12_22_062654) do
     t.datetime "updated_at", null: false
     t.integer "type"
     t.index ["owner_id"], name: "index_pets_on_owner_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
 end

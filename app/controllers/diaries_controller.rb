@@ -1,7 +1,7 @@
 class DiariesController < ApplicationController
 
   def index
-    @diaries = Diary.all
+    @diaries = Diary.all.reverse_order
   end
 
   def create

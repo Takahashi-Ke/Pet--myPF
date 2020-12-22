@@ -7,6 +7,33 @@ class Pet < ApplicationRecord
   has_many :diary_comments, dependent: :destroy
   has_many :diary_favorites, dependent: :destroy
 
+    # フォローするユーザ
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  # 自分がフォローしているユーザ
+  has_many :followed_pets, through: :active_relationships,
+                            source: :followed
+  # フォローされるユーザ
+  has_many :passive_relationships, class_name: "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
+  # 自分をフォローしているユーザ
+  has_many :following_pets, through: :passive_relationships,
+                             source: :follower
+
+  def follow(pet_id)
+    active_relationships.create(followed_id: pet_id)
+  end
+
+  def unfollow(pet_id)
+    active_relationships.find_by(followed_id: pet_id).destroy
+  end
+
+  def following?(pet)
+    followed_pets.include?(pet)
+  end
+
   accepts_nested_attributes_for :pet_personalities, allow_destroy: true
 
   self.inheritance_column = :_type_disabledrails
