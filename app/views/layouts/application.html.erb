@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" integrity="sha384-9/D4ECZvKMVEJ9Bhr3ZnUAF+Ahlagp1cyPC7h5yDlZdXs4DQ/vRftzfd+2uFUuqS" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -14,7 +15,12 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3">
-            <%= link_to "ペッと！について", '#' %>
+            <% if owner_signed_in? %>
+              <%= link_to "みんなの日記", diaries_path %>
+              <%= link_to "みんなの思い出", "#" %>
+            <% else %>
+              <%= link_to "ペッと！について", '#' %>
+            <% end %>
           </div>
           <div class="col-md-4 offset-md-2">
             <h1>ロゴ</h1>
@@ -22,7 +28,7 @@
           <div class="col-md-3">
             <ul class="nav">
               <% if owner_signed_in? %>
-                <li><%= link_to "マイハウス", '#' %></li>
+                <li><%= link_to "マイハウス", pet_path(current_owner) %></li>
                 <li><%= link_to "お知らせ", '#' %></li>
                 <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
               <% else %>
