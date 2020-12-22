@@ -13,9 +13,7 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
     owner = Owner.new(configure_sign_up_params)
-    owner.pet.gender.to_i
     owner.save
   end
 
