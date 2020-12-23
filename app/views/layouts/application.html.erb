@@ -13,19 +13,21 @@
   <body>
     <header>
       <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <% if owner_signed_in? %>
-              <%= link_to "みんなの日記", diaries_path %>
-              <%= link_to "みんなの思い出", "#" %>
-            <% else %>
-              <%= link_to "ペッと！について", '#' %>
-            <% end %>
+        <div class="row header-area">
+          <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="nav">
+              <% if owner_signed_in? %>
+                <li><%= link_to "みんなの日記", diaries_path %></li>
+                <li><%= link_to "みんなの思い出", "#" %></li>
+              <% else %>
+                <li><%= link_to "ペッと！について", '#' %></li>
+              <% end %>
+            </div>
           </div>
-          <div class="col-md-4 offset-md-2">
+          <div class="col-3 offset-1 d-flex align-items-center justify-content-center">
             <h1>ロゴ</h1>
           </div>
-          <div class="col-md-3">
+          <div class="offset-2 d-flex align-items-center justify-content-center">
             <ul class="nav">
               <% if owner_signed_in? %>
                 <li><%= link_to "マイハウス", pet_path(current_owner) %></li>

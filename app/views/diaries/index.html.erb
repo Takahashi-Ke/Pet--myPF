@@ -1,7 +1,9 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-7">
+    <div class="col-3">
+      <%= render 'pets/pet_info', pet: @pet %>
+    </div>
+    <div class="col-6">
       <%= render 'diaries/diaries_list', diaries: @diaries %>
     </div>
     <div class="col-3"></div>
