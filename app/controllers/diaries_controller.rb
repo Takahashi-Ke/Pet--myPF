@@ -1,7 +1,9 @@
 class DiariesController < ApplicationController
 
   def index
+    @pet = current_owner.pet
     @diaries = Diary.all.reverse_order
+    @diary_comment = DiaryComment.new
   end
 
   def create

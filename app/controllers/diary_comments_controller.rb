@@ -1,13 +1,13 @@
 class DiaryCommentsController < ApplicationController
 
   def create
+    @diary = Diary.find(params[:diary_id])
     @diary_comment = DiaryComment.new(comment_params)
     @diary_comment.pet_id = params[:pet_id]
     @diary_comment.diary_id = params[:diary_id]
     if @diary_comment.save
-      redirect_to request.referer
+      @diary_comment = DiaryComment.new
     else
-      binding.pry
       @pet = Pet.find_by(id: current_owner.pet)
       @personalities = @pet.pet_personalities
       @diary = Diary.new
@@ -18,9 +18,9 @@ class DiaryCommentsController < ApplicationController
   end
 
   def destroy
-    diary_comment = DiaryComment.find(params[:id])
-    diary_comment.destroy
-    redirect_to request.referer
+    @diary = Diary.find(params[:diary_id])
+    @diary_comment = DiaryComment.find(params[:id])
+    @diary_comment.destroy
   end
 
   private
