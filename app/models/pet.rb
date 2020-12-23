@@ -22,6 +22,17 @@ class Pet < ApplicationRecord
   has_many :following_pets, through: :passive_relationships,
                              source: :follower
 
+  # 通知を送るユーザ
+  has_many :active_notifications, class_name: "Notification",
+                                  foreign_key: "visiter_id",
+                                  dependent: :destroy
+  
+  # 通知を受け取るユーザ
+  has_many :passive_notifications, class_name: "Notification",
+                                  foreign_key: "visited_id",
+                                  dependent: :destroy
+
+
   def follow(pet_id)
     active_relationships.create(followed_id: pet_id)
   end

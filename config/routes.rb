@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :memories
   resources :diary_comments, only: [:create, :destroy]
   resources :diary_favorites, only: [:create, :destroy]
-
+  resources :notifications, only: :index
 end

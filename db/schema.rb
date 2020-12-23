@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_090841) do
+ActiveRecord::Schema.define(version: 2020_12_23_035944) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
@@ -55,6 +55,21 @@ ActiveRecord::Schema.define(version: 2020_12_22_090841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["memory_id"], name: "index_memory_images_on_memory_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "diary_id"
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "diary_comment_id"
+    t.string "action"
+    t.boolean "is_checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_comment_id"], name: "index_notifications_on_diary_comment_id"
+    t.index ["diary_id"], name: "index_notifications_on_diary_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
   end
 
   create_table "owners", force: :cascade do |t|
