@@ -1,5 +1,4 @@
 <% diaries.each do |diary| %>
-  <input class="data" type="hidden" name="data" value="=diary">
   <div class="diary-contents">
     <div class="row">
       <div class="col-2">
@@ -20,7 +19,7 @@
         <i class="far fa-comment-alt"></i>
       </div>
 
-      <div class="col-2 diary-favorite-btn" id="diary_<%= diary.id %>">
+      <div class="col-2 diary-favorite-btn-<%= diary.id %>">
         <%= render 'diary_favorites/diary_favo', diary: diary %>
       </div>
 
