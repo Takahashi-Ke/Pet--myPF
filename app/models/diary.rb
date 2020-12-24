@@ -34,12 +34,15 @@ class Diary < ApplicationRecord
 
   # 投稿にコメントされた時通知を生成するメソッド
   def create_notification_comment(pet, diary_comment_id)
-    history_ids = DiaryComment.select(pet_id).where(diary_id: id).where.not(pet_id: pet.id).distinct
+    history_ids = DiaryComment.select(:pet_id).where(diary_id: self.id).where.not(pet_id: pet.id).distinct
     # 自分意外にもコメントしている人がいる場合、その全員に通知を送る
-    history_ids.each do |history_id|
-      save_notification_comment(pet, diary_comment_id, history_id['pet_id'])
+    if history_ids.blank?
+      save_notification_comment(pet, diary_comment_id, pet_id)
+    else
+      history_ids.each do |history_id|
+        save_notification_comment(pet, diary_comment_id, history_id['pet_id'])
+      end
     end
-    save_notification_comment(pet, diary_comment_id, pet_id) if history_ids.blank?
   end
   def save_notification_comment(pet, diary_comment_id, visited_id)
     notification = pet.active_notifications.new(
@@ -52,7 +55,9 @@ class Diary < ApplicationRecord
     if notification.visitor_id == notification.visited_id
       notification.is_checked = true
     end
-    notification.save if notification.valid?
+    if notification.valid?
+      notification.save
+    end
   end
 
 

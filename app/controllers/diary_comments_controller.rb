@@ -22,6 +22,7 @@ class DiaryCommentsController < ApplicationController
     @diary = Diary.find(params[:diary_id])
     @diary_comment = DiaryComment.find(params[:id])
     @diary_comment.destroy
+    @diary_comment = DiaryComment.new
   end
 
   private
