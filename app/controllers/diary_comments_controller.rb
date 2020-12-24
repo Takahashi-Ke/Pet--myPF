@@ -6,6 +6,7 @@ class DiaryCommentsController < ApplicationController
     @diary_comment.pet_id = params[:pet_id]
     @diary_comment.diary_id = params[:diary_id]
     if @diary_comment.save
+      @diary.create_notification_comment(current_owner.pet, @diary_comment.id)
       @diary_comment = DiaryComment.new
     else
       @pet = Pet.find_by(id: current_owner.pet)

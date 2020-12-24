@@ -5,6 +5,7 @@ class DiaryFavoritesController < ApplicationController
     pet = current_owner.pet
     favorite = pet.diary_favorites.new(diary_id: @diary.id)
     favorite.save
+    @diary.create_notification_favo(pet)
   end
 
   def destroy
