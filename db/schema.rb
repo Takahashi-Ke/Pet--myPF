@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_035944) do
+ActiveRecord::Schema.define(version: 2020_12_24_022216) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_035944) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "diary_id"
-    t.integer "visiter_id"
+    t.integer "visitor_id"
     t.integer "visited_id"
     t.integer "diary_comment_id"
     t.string "action"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_035944) do
     t.index ["diary_comment_id"], name: "index_notifications_on_diary_comment_id"
     t.index ["diary_id"], name: "index_notifications_on_diary_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
-    t.index ["visiter_id"], name: "index_notifications_on_visiter_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "owners", force: :cascade do |t|

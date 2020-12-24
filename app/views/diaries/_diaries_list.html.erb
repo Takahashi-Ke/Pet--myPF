@@ -6,7 +6,12 @@
       </div>
       <div class="col-10">
         <div class="row">
-          <%= link_to diary.pet.name, pet_path(diary.pet) %>
+          <div class="col-5">
+            <%= link_to diary.pet.name, pet_path(diary.pet) %>
+          </div>
+          <div class="col-6 ml-3">
+            <%= diary.created_at.to_s(:datetime_jp) %>
+          </div>
           <div class="diary-body">
             <%= attachment_image_tag diary, :image, size: '230x230' %><br />
             <%= diary.body %>

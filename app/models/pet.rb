@@ -22,12 +22,12 @@ class Pet < ApplicationRecord
   has_many :following_pets, through: :passive_relationships,
                              source: :follower
 
-  # 通知を送るユーザ
+  # 自分からの通知
   has_many :active_notifications, class_name: "Notification",
-                                  foreign_key: "visiter_id",
+                                  foreign_key: "visitor_id",
                                   dependent: :destroy
-  
-  # 通知を受け取るユーザ
+
+  # 相手からの通知
   has_many :passive_notifications, class_name: "Notification",
                                   foreign_key: "visited_id",
                                   dependent: :destroy
@@ -43,6 +43,18 @@ class Pet < ApplicationRecord
 
   def following?(pet)
     followed_pets.include?(pet)
+  end
+
+  # フォローされた時通知を生成するメソッド
+  def create_notification_follow(pet)
+    history = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",pet.id, id, 'follow'])
+    if history.blank?
+      notification = pet.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 
   accepts_nested_attributes_for :pet_personalities, allow_destroy: true
