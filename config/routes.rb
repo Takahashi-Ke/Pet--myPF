@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :owners
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'homes#top'
+  resources :owners, only: [:index] do
+    member do
+      get '/unsubscribe' => 'owners#unsubscribe'
+      delete '/withdraw' => 'owners#withdraw'
+    end
+  end
   resources :pets, only: [:index, :show, :edit, :update] do
     resources :relationships, only: [:create, :destroy]
   end
