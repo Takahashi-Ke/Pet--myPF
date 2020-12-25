@@ -1,0 +1,19 @@
+<div class="row">
+  <p><%= pet.name %>の性格を選びましょう</p>
+</div>
+<%= form_with model: pet_personality, url: pet_pet_personalities_path(pet), local: true do |f| %>
+  <div class="row">
+    <% PetPersonality.personalities.map do |k, v| %>
+      <div class="col-5 ml-3">
+        <%= f.check_box :personality, {}, k, false %>
+        <%= f.label :personality, k %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= f.submit "決定する", class:"btn" %>
+  </div>
+  <div class="hide-modal-btn">
+    閉じる
+  </div>
+<% end %>

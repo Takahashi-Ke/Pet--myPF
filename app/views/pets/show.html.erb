@@ -22,7 +22,7 @@
               <%= pp.personality %>
             <% end %>
           <% else %>
-            <div id="select-personality">
+            <div class="select-personality-btn">
               <%= button_tag "#{@pet.name}の性格を選ぶ" %>
             </div>
           <% end %>
@@ -50,7 +50,8 @@
 
   <div class="row mt-5">
     <div class="col-8 offset-1">
-        <!--タブメニュー-->
+
+      <!--タブメニュー-->
       <ul id="tab-menu">
         <li><a href="#tab1" class="active">日記</a></li>
         <li><a href="#tab2" class="">アルバム</a></li>
@@ -105,7 +106,6 @@
                 <div class="row mt-3 ml-5">
                   <%= follower.introduction %>
                 </div>
-
               </div>
             </div>
           <% end %>
@@ -118,10 +118,15 @@
 
 
 
-  <!--日記新規投稿-->
+
   <div class="modal-wrapper"></div>
+  <!--日記新規投稿-->
   <div class="diary-modal">
     <%= render 'diaries/diary_form', diary: @diary, pet: @pet %>
+  </div>
+  <!--ペットの性格入力-->
+  <div class="personality-modal">
+    <%= render 'pet_personalities/personality_form', pet: @pet, pet_personality: @pet_personality %>
   </div>
 
 </div>
