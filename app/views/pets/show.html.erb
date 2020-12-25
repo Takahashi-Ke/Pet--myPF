@@ -17,7 +17,7 @@
           <p>性格</p>
         </div>
         <div class="col-4">
-          <% if @pet.pet_personalities.exists? %>
+          <% if @pet_personalities.exists? %>
             <% @pet_personalities.each do |pp| %>
               <%= pp.personality %>
             <% end %>
@@ -126,7 +126,7 @@
   </div>
   <!--ペットの性格入力-->
   <div class="personality-modal">
-    <%= render 'pet_personalities/personality_form', pet: @pet, pet_personality: @pet_personality %>
+    <%= render 'pet_personalities/personality_form', pet: @pet %>
   </div>
 
 </div>

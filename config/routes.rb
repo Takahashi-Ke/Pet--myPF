@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :pets, only: [:index, :show, :edit, :update] do
     resources :relationships, only: [:create, :destroy]
-    resources :pet_personalities, only: [:create, :update]
+    resource :pet_personalities, only: [:create, :update]
   end
   resources :diaries, only: [:index, :create, :destroy]
   resources :memories

@@ -2,10 +2,17 @@ class Pet < ApplicationRecord
 
   belongs_to :owner
   has_many :pet_personalities, dependent: :destroy
+  accepts_nested_attributes_for :pet_personalities, allow_destroy: true
   has_many :diaries, dependent: :destroy
   has_many :memories, dependent: :destroy
   has_many :diary_comments, dependent: :destroy
   has_many :diary_favorites, dependent: :destroy
+
+  attachment :image
+
+  validates :name, presence: true
+
+  self.inheritance_column = :_type_disabledrails
 
     # フォローするユーザ
   has_many :active_relationships, class_name: "Relationship",
@@ -56,13 +63,6 @@ class Pet < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
-  accepts_nested_attributes_for :pet_personalities, allow_destroy: true
-
-  self.inheritance_column = :_type_disabledrails
-
-  attachment :image
-  validates :name, presence: true
 
   enum gender: {
     男の子: 1,

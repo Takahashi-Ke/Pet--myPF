@@ -2,17 +2,17 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
-    @personalities = @pet.pet_personalities
+    @pet_personalities = @pet.pet_personalities
     @diaries = @pet.diaries
     @photos  = Diary.where.not(image_id: nil).where(pet_id: @pet)
     @diary = Diary.new
     @diary_comment = DiaryComment.new
-    @pet_personality = PetPersonality.new
+    @pet.pet_personalities.build
   end
 
   def edit
     @pet = Pet.find(params[:id])
-    @personalities = @pet.pet_personalities
+    @pet.pet_personalities.build
   end
 
   def update
@@ -24,7 +24,7 @@ class PetsController < ApplicationController
   private
   def owner_pet_params
     params.require(:owner).permit(:name, :image, pet_attributes: [:id, :name, :image, :birthday, :gender, :type, :introduction, :_destroy,
-                                      pet_personalities_attributes: [:id, :personality, :_destroy]])
+                                      pet_personalities_attributes: [:personality, :_destroy]])
   end
 
 end
