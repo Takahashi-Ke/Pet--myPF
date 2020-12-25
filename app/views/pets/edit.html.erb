@@ -35,13 +35,12 @@
                 <%= pet.label :紹介文 %><br />
                 <%= pet.text_area :introduction %>
               </div>
-
             </div>
           </div>
           <div class="row">
             <%= pet.label :性格 %><br />
             <% PetPersonality.personalities.map do |k, v| %>
-              <%= pet.fields_for :pet_personality,@pet_personalities do |pp| %>
+              <%= pet.fields_for :pet_personality do |pp| %>
                 <%= pp.check_box :personality, {}, k, false %>
                 <%= pp.label :personality, k %>
               <% end %>
