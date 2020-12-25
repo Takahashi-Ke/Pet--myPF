@@ -39,9 +39,10 @@
           <% if @pet.id == current_owner.pet.id %>
             <%= link_to "プロフィールを編集する", edit_pet_path(@pet) %>
           <% elsif current_owner.pet.following?(@pet) %>
-            <%= link_to "フォロー中", pet_relationship_path(@pet), method: :delete %>
+            <%= link_to "友だち", pet_relationship_path(@pet), method: :delete %>
+            <%= link_to "あいさつする", pet_chats_path(@pet) %>
           <% else %>
-            <%= link_to "フォローする", pet_relationships_path(@pet), method: :post %>
+            <%= link_to "友だちになる", pet_relationships_path(@pet), method: :post %>
           <% end %>
         </div>
       </div>
@@ -94,7 +95,7 @@
         <!--友だち(tab4)-->
         <div id="tab4" class="tab">
           <p>友だち</p>
-          <% @pet.following_pets.each do |follower| %>
+          <% @pet.followed_pets.each do |follower| %>
             <div class="row">
               <div class="col-2">
                 <%= attachment_image_tag follower, :image, size: '120x120', fallback: "no_image.png" %>
