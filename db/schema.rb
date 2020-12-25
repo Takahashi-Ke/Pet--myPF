@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_022216) do
+ActiveRecord::Schema.define(version: 2020_12_25_151057) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "room_id"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_chats_on_pet_id"
+    t.index ["room_id"], name: "index_chats_on_room_id"
+  end
 
   create_table "diaries", force: :cascade do |t|
     t.integer "pet_id"
@@ -95,6 +105,15 @@ ActiveRecord::Schema.define(version: 2020_12_24_022216) do
     t.index ["pet_id"], name: "index_pet_personalities_on_pet_id"
   end
 
+  create_table "pet_rooms", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_pet_rooms_on_pet_id"
+    t.index ["room_id"], name: "index_pet_rooms_on_room_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.integer "owner_id"
     t.string "name"
@@ -115,6 +134,11 @@ ActiveRecord::Schema.define(version: 2020_12_24_022216) do
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
