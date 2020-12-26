@@ -6,8 +6,12 @@
     <div class="col-8">
       <div class="row">
         <%= @pet.name %>
-        <%= @pet.gender %>
-        <%= @pet.birthday %>
+          <% if @pet.gender == 'オス' %>
+           <i class="fas fa-mars gender-icon"></i>
+          <% else %>
+            <i class="fas fa-venus gender-icon"></i>
+          <% end %>
+        <%= @pet.age %>歳<%= @pet.moon_age %>ヶ月
       </div>
       <div class="row">
         <div class="col-6">

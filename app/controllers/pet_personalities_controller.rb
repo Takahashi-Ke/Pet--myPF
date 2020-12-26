@@ -2,10 +2,11 @@ class PetPersonalitiesController < ApplicationController
 
   def create
     pet = current_owner.pet
-    pet_personalities = pet.pet_personalities.new(personality_params)
-    # binding.pry
-    pet_personalities.personality = params[:pet][:pet_personalities_attributes][:personality].to_i
-    pet_personalities.save
+    params[:pet][:pet_personalities_attributes].each do |k, v|
+      pet_personality = pet.pet_personalities.new(personality_params)
+      pet_personality.personality = v[:personality].to_i
+      pet_personality.save
+    end
     redirect_to pet_path(pet)
   end
 

@@ -66,9 +66,25 @@ class Pet < ApplicationRecord
     end
   end
 
+  def age
+    d1 = self.birthday.strftime("%Y%m%d").to_i
+    d2 = Date.today.strftime("%Y%m%d").to_i
+    return (d2 - d1) / 10000
+  end
+  def moon_age
+    d1 = self.birthday.strftime("%Y%m").to_i
+    d2 = Date.today.strftime("%Y%m").to_i
+    m = (d2 - d1) / 100
+    if m < 0
+      return m + 12
+    else
+      return m
+    end
+  end
+
   enum gender: {
-    男の子: 1,
-    女の子: 2
+    オス: 1,
+    メス: 2
   }
 
   enum type: {

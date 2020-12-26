@@ -40,10 +40,12 @@
           <div class="row">
             <%= pet.label :性格 %><br />
             <% PetPersonality.personalities.map do |k, v| %>
-              <%= pet.fields_for :pet_personality do |pp| %>
-                <%= pp.check_box :personality, {}, k, false %>
-                <%= pp.label :personality, k %>
-              <% end %>
+              <div class="col-5 ml-3">
+                <%= pet.fields_for :pet_personalities do |pp| %>
+                  <%= pp.check_box :personality, {}, v, false %>
+                  <%= pp.label :personality, k %>
+                <% end %>
+              </div>
             <% end %>
           </div>
         </div>
