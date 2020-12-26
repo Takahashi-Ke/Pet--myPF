@@ -6,7 +6,7 @@
     <% PetPersonality.personalities.map do |k, v| %>
       <div class="col-5 ml-3">
         <%= f.fields_for :pet_personalities do |pp| %>
-          <%= pp.check_box :personality, {:checked => false}, v, false %>
+          <%= pp.check_box :personality, {}, v, false %>
           <%= pp.label :personality, k %>
         <% end %>
       </div>
