@@ -12,18 +12,33 @@
   <body>
     <header>
       <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <%= link_to "ペッと！について", '#' %>
+        <div class="row header-area">
+          <div class="col-3 d-flex align-items-center justify-content-center">
+            <div class="nav">
+              <% if owner_signed_in? %>
+                <li><%= link_to "みんなの日記", diaries_path %></li>
+                <li><%= link_to "みんなの思い出", "#" %></li>
+              <% else %>
+                <li><%= link_to "ペッと！について", '#' %></li>
+              <% end %>
+            </div>
           </div>
-          <div class="col-md-4 offset-md-2">
+          <div class="col-3 offset-1 d-flex align-items-center justify-content-center">
             <h1>ロゴ</h1>
           </div>
-          <div class="col-md-3">
+          <div class="ml-5 d-flex align-items-center justify-content-center">
             <ul class="nav">
               <% if owner_signed_in? %>
-                <li><%= link_to "マイハウス", '#' %></li>
-                <li><%= link_to "お知らせ", '#' %></li>
+                <li>
+                  <%= link_to pet_path(current_owner) do %>
+                    <i class="fas fa-home"></i><span> マイハウス</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to notifications_path do %>
+                    <i class="far fa-bell"></i><sapn> お知らせ</sapn>
+                  <% end %>
+                </li>
                 <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
               <% else %>
                 <li><%= link_to "新規登録", new_owner_registration_path %></li>

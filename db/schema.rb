@@ -10,7 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_010216) do
+ActiveRecord::Schema.define(version: 2020_12_25_151057) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "room_id"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_chats_on_pet_id"
+    t.index ["room_id"], name: "index_chats_on_room_id"
+  end
+
+  create_table "diaries", force: :cascade do |t|
+    t.integer "pet_id"
+    t.text "body"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_diaries_on_pet_id"
+  end
+
+  create_table "diary_comments", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "diary_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_diary_comments_on_diary_id"
+    t.index ["pet_id"], name: "index_diary_comments_on_pet_id"
+  end
+
+  create_table "diary_favorites", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "diary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_diary_favorites_on_diary_id"
+    t.index ["pet_id"], name: "index_diary_favorites_on_pet_id"
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.integer "pet_id"
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_memories_on_pet_id"
+  end
+
+  create_table "memory_images", force: :cascade do |t|
+    t.integer "memory_id"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["memory_id"], name: "index_memory_images_on_memory_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "diary_id"
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.integer "diary_comment_id"
+    t.string "action"
+    t.boolean "is_checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_comment_id"], name: "index_notifications_on_diary_comment_id"
+    t.index ["diary_id"], name: "index_notifications_on_diary_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
 
   create_table "owners", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +105,15 @@ ActiveRecord::Schema.define(version: 2020_12_19_010216) do
     t.index ["pet_id"], name: "index_pet_personalities_on_pet_id"
   end
 
+  create_table "pet_rooms", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_pet_rooms_on_pet_id"
+    t.index ["room_id"], name: "index_pet_rooms_on_room_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.integer "owner_id"
     t.string "name"
@@ -46,6 +125,20 @@ ActiveRecord::Schema.define(version: 2020_12_19_010216) do
     t.datetime "updated_at", null: false
     t.integer "type"
     t.index ["owner_id"], name: "index_pets_on_owner_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

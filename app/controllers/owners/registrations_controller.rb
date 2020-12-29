@@ -13,8 +13,7 @@ class Owners::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    owner = Owner.new(configure_sign_up_params)
-    owner.save
+    super
   end
 
   # GET /resource/edit
