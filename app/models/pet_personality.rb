@@ -2,6 +2,8 @@ class PetPersonality < ApplicationRecord
 
   belongs_to :pet
 
+  validates :personality, presence: true
+
   enum personality: {
     おとなしい: 1,
     さみしがり: 2,
