@@ -74,6 +74,12 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'jquery-rails'
 
+gem 'dotenv-rails'
+
+group :production do
+  gem 'mysql2'
+end
+
 gem 'kaminari','~> 1.2.1'
 
 gem 'rails-i18n', '~> 5.1'
